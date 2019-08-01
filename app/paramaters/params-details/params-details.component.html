@@ -1,0 +1,199 @@
+<!doctype html>
+<ng-option ng-app="myApp">
+
+  <script src="/dist/angular-dirty-check.min.js"></script>
+
+  <body>
+    <div *ngIf="parameter" class="div2">
+      <form dirty-check (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="header">
+          <div class="parmname">
+            <header><b>{{parameter.dbParamLongtext}}</b></header>
+          </div>
+          <div *ngIf="f.dirty && parameter!=parameterOrig" class="alert alert-warning">
+            <strong>Warning! You have unsaved changes</strong>
+          </div>
+        </div>
+        <br>
+        <div class="details">
+          <div class="form-group row">
+            <label for="name">dbParamId:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="number" class="form-control" id="dbId" name="dbId"
+                [(ngModel)]="parameter.dbParamId" readonly>
+            </div>
+            <div *ngIf="name.invalid" class="alert alert-danger">
+              <div *ngIf="name.errors['invalid']">
+                dbParamId is invalid.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">laenge:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="laenge" name="laenge"
+                #laenge="ngModel" [(ngModel)]="parameter.laenge" appNumberValidation>
+            </div>
+            <div *ngIf="name.invalid" class="alert alert-danger">
+              <div *ngIf="name.errors['invalid']">
+                laenge is invalid.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">leistVol:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="leist" name="leist"
+                appNumberValidation [(ngModel)]="parameter.leistVol">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">dbParamShorttext:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="name" name="name"
+                #name="ngModel" [(ngModel)]="parameter.dbParamShorttext">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">dbParamLongText:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="namel" name="namel"
+                #name="ngModel" [(ngModel)]="parameter.dbParamLongtext">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="name">arbpl:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="arb" name="arb"
+                [(ngModel)]="parameter.arbpl" readonly>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">werks:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="werks" name="werks"
+                #name="ngModel" appNumberValidation [(ngModel)]="parameter.werks" readonly>
+            </div>
+            <div *ngIf="name.invalid" class="alert alert-danger">
+              <div *ngIf="name.errors['invalid']">
+                werks is invalid.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">msehCode:</label>
+            <div class="col-sm-9">
+              <ng-select class="card" id="mseh" [(ngModel)]="parameter.msehCode" name="mseh" [clearable]="false">
+                <ng-option *ngFor="let code of mseh" [value]='code.msehCode'>{{code.msehCode}} - {{code.msehL}}
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+
+          <!-- <ng-select [items]="albums"
+                           #select
+                           bindLabel="title"
+                           dropdownPosition="auto"
+                           bindValue="id"
+                           labelForId="album"
+                           placeholder="Select album"
+                           [virtualScroll]="true"
+                           formControlName="album">
+                    <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                        <div><span>Title: </span><span [ngOptionHighlight]="search">{{item.title}}</span></div>
+                        <small><b>Id:</b> {{item.id}} | <b>UserId:</b> {{item.userId}}</small>
+                    </ng-template>
+                </ng-select>-->
+
+          <div class="form-group row">
+            <label for="name">ungWert:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="ung" name="ung"
+                #name="ngModel" appNumberValidation [(ngModel)]="parameter.ungWert">
+            </div>
+            <div *ngIf="name.invalid" class="alert alert-danger">
+              <div *ngIf="name.errors['invalid']">
+                ungWert is invalid.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">obgWert:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="obg" name="obg"
+                #name="ngModel" appNumberValidation [(ngModel)]="parameter.obgWert">
+            </div>
+            <div *ngIf="name.invalid" class="alert alert-danger">
+
+              <div *ngIf="name.errors['invalid']">
+                obgWert is invalid.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">slayerAggr:</label>
+            <div class="col-sm-9">
+              <ng-select class="col-form-label" id="slayer" name="slayer" [clearable]="false"
+                [(ngModel)]="parameter.slayerAggr">
+                <ng-option [value]="'MIN'">MIN</ng-option>
+                <ng-option [value]="'MAX'">MAX</ng-option>
+                <ng-option [value]="'AVG'">AVG</ng-option>
+              </ng-select>
+            </div>
+
+          </div>
+
+          <div class="form-group row">
+            <label for="name">opcTagName:</label>
+            <div class="col-sm-9">
+              <input class="col-sm-3 col-form-label" type="text" class="form-control" id="opc" name="opc"
+                #name="ngModel" [(ngModel)]="parameter.opcTagName" readonly>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">technParm:</label>
+            <div class="col-sm-9">
+              <ui-switch class="col-sm-3 col-form-label" id="tech" name="tech" [(ngModel)]="parameter.technParm">
+              </ui-switch>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="name">direktEinst:</label>
+            <div class="col-sm-9">
+              <ui-switch class="col-sm-3 col-form-label" id="direkt" name="direkt" [(ngModel)]="parameter.direktEinst">
+              </ui-switch>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button class="btn btn-primary" type="submit" [disabled]="f.invalid"
+            (click)="updateParameter(parameter, arbpl)">Save</button>
+          <button type="button" class="btn bg-danger text-white" data-dismiss="modal"
+            (click)="discardChanges(f)">Discard</button>
+          <!--<button type="reset" (click)="revert()">Revert</button>-->
+        </div>
+
+      </form>
+
+    </div>
+    <div *ngIf="!parameter" class="div2">
+      <p><b>NO PARAMETER DETAILS FOUND!</b></p>
+    </div>
+  </body>

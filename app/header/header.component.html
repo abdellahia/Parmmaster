@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  
+    
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="../assets/images/logo.png" height="30" class="d-inline-block align-top" alt="">
+        Parmmasters
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown" *ngIf="AvailArbpl && arbpl">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{arbpl.name}}
+              <fa-icon class="ml-1 mr-1" [icon]="faMapMarkerAlt"></fa-icon>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <ng-container *ngFor="let arb of AvailArbpl">
+                <a class="dropdown-item" (click)="onArbplChange(arb)">{{arb.name}}</a>
+              </ng-container>
+            </ul>
+          </li>
+        </ul>
+        <span class="navbar-text ml-3" *ngIf="userDetails">
+          {{userDetails.email}}
+        </span>
+      </div>
+    </div>
+  </nav>
+</header>

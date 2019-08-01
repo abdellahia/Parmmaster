@@ -1,0 +1,41 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <i class="fa fa-filter" style="font-size:30px;color:red" (click)="sort('dbParamLongtext')"></i>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <span class="navbar-text">
+            <filter-textbox (changed)="filter($event)"></filter-textbox>
+            <i class="icon-filter"></i>
+          </span>
+        </div>
+        <div>
+          <h5>({{this.parametersTotal}})</h5>
+        </div>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col1">
+        <ul *ngFor="let param of filteredParameters" class="list-group">
+          <a [routerLink]="['./details',param.dbParamId]" class="list-group-item list-group-item-action ">
+            <div class="d-flex w-100 justify-content-between">
+              <h6 class="mb-1"><b>{{param.dbParamLongtext | capitalize}}</b></h6>
+              <small>{{param.dbParamId}}</small>
+            </div>
+            <small>{{param.opcTagName}}</small>
+          </a>
+        </ul>
+      </div>
+      <div class="col">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

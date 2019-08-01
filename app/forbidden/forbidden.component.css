@@ -1,0 +1,67 @@
+html {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  /* Sit on top */
+  left: 0;
+  top: -25px;
+  background-color: rgb(38, 50, 56);
+  /* Black fallback color */
+  background-color: rgba(38, 50, 56, 0.9);
+  /* Black w/opacity */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+
+body {
+  padding: 0;
+  margin: 0;
+  background: repeating-linear-gradient(45deg, darkred, darkred 2px, #330000 3px, #330000 8px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+#spam {
+  background-color: lightgray;
+  border-radius: 5px;
+  margin: auto;
+  width: 85%;
+  cursor: not-allowed;
+}
+
+h1 {
+  padding-top: 30px;
+  font-size: 60px;
+  font-family: Arial;
+  text-align: center;
+  border-bottom: 1px solid #333;
+  border-bottom-style: dashed;
+  padding-bottom: 20px;
+}
+
+spam {
+  color: red;
+  text-decoration: none;
+  cursor: not-allowed;
+}
+
+p {
+  text-align: center;
+  font-family: Arial;
+  font-weight: bold;
+  padding-bottom: 3%;
+}
+
+small {
+  font-family: Arial;
+  text-align: center;
+  word-spacing: -1px;
+  font-size: 10px;
+  font-weight: normal;
+  color: gray;
+}
